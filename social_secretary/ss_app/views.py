@@ -34,6 +34,10 @@ def show_profile(request):
     return render(request, 'profile.html')
 
 
+def finish_user_flow(request):
+    return render(request, 'finish_user_flow.html')
+
+
 def fb_login_callback(request):
     creds = request.META['QUERY_STRING'].split('&')
     fbtoken = creds[0].split('=')[1]
