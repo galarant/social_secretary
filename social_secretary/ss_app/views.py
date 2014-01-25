@@ -1,8 +1,8 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse
 
 from models import Contact
-import json
 
 from facepy import (
     GraphAPI,
@@ -23,6 +23,14 @@ def fb_connect(request):
 
 def set_contacts(request):
     return render(request, 'set_contacts.html')
+
+
+def redirect_signin_function(x, y):
+    return "/accounts/complete"
+
+
+def show_profile(request):
+    return render(request, 'profile.html')
 
 
 def fb_login_callback(request):
