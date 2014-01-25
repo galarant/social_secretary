@@ -72,6 +72,7 @@ Installation and Setup
    mysql> CREATE DATABASE social_secretary_test;
    mysql> GRANT ALL ON social_secretary.* TO 'social_secretary'@'localhost' IDENTIFIED BY 'my_dev_db_password';
    mysql> GRANT ALL ON social_secretary_test.* TO 'social_secretary'@'localhost' IDENTIFIED BY 'my_dev_db_password';
+   ```
 
 9. Run syncdb:
    ```
