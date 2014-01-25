@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 from models import Contact
 import json
@@ -54,9 +55,11 @@ def fb_login_callback(request):
 
 		temp_list = []
 
-		for person in counter:
+		for person in candidates:
 			contact = Contact(facebook_id = person[0], name = person[1])
 			img_url = contact.image_url()
+
+			contact.save
 
 			facebook_id = contact.facebook_id
 			facebook_name = contact.name
@@ -65,5 +68,4 @@ def fb_login_callback(request):
 		json_list = json.dumps(temp_list)
 
 
-		#TODO template is not the right one
-		return render(request, 'set_contacts.html')
+		return HttpResponse(json_list, content_type="application/json")
