@@ -4,15 +4,161 @@
   <meta charset="utf-8">
   <title>Social Secretary</title>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <style>
-    body{
+  #sortable { 
+  		list-style-type: none; 
+  		margin: auto; 
+  		padding: 0; 
+  		width: 450px; }
+  
+  #sortable li { 
+  		margin: 3px 3px 3px 0;
+  		padding: 1px; 
+  		float: left; 
+  		width: 100px; 
+  		height: 90px; 
+  		font-size: 4em; 
+  		text-align: center;
+  		border-radius: 12px;
+  		}
+	h1 {
+        color:rgb(0, 139, 111);
+        font-family:"Comic Sans MS", cursive, sans-serif;
+        font-size:35px;
+    	text-align: center;
+        margin-bottom: auto;
+         }
+         
+	.wrapper {
+                width: 500px;
+                height: 500px;
+                background-color: #009090;
+
+               position:relative;
+               margin: auto;
+               padding-left: 28px;
+               border-style: outset;
+				border-width: 20px;
+				border-radius:25px;
+				border-color: rgba(0, 83, 139, 0.77);
+            }
+    img {
+    	width: 100px;
+    	height: 120px:
+    	position:relative;
+		bottom:10px;
+		}
+    .icon {
+    	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    	font-size:13px;
+    	}
+    .icon:hover{
+    	opacity:0.6;
+    }
+    
+    #sortable.ui-sortable{
+    	position:relative; 
+  		margin-left:auto;
+		margin-right:auto;
+		margin-top: auto;
+		margin-bottom: auto;
+  		}
+    	
+    .ui-state-default{
+    	background: rgba(0, 255, 194, 0.71);
+    	border:20px;
+    }	
+	
+	button {
+	border-radius:25px;
+	width: 300px;
+    height: 200px:
+	margin-top: 0px;
+	margin-right: auto;
+	display: block;
+	font-size: 12px;
+	font-style:bold;
+	}
+	
+	button:hover{
+    	opacity:0.8;
+    }
+    
+	.submit_button {
+	display: table;
+    margin: 0 auto;
+	}
+
+    p{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-style: bold;
+    text-align:center;
+    font-size: 15px;
+    margin-bottom: auto;
+    margin-top: auto;
+    }
+    
+    body:after {
+    content: "";
     background-image: url('http://www.ekaterinawalter.com/wp-content/uploads/2013/11/networking.jpg');
+    background-size:cover;
     opacity: 0.3;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -1;
     }
   </style>
-  </head>
+  <script>
+  var fb_id=0;
+  var img_url="http://leadersinheels.com/wp-content/uploads/facebook-default.jpg";
+  var fb_name="Jane Smith";
+  var num_contacts=0;
+  
+  function endSorting(){
+  	var sortedIDs = $( "#sortable" ).sortable( "toArray" );
+  	var data = JSON.stringify(sortedIDs)
+  	console.log(data);
+  	/*$.ajax({
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            url: 'set_contacts',
+            data: data,
+            async: false,
+            success: function (response) {
+                alert("Record Has been saved in Database");
+            },
+            error: function ()
+            { console.log('There is an error'); }
+        });*/
+  };
+  
+  function display_rank(){
+  	document.getElementById('mouseover_img').style.display = 'block';
+  	console.log("hello");
+  }
+</script>
+	<h1>Social Secretary</h1>
+	<p>Rearrange your contacts to reflect your network, starting from the upper left!</p>
+</head>
 <body>
+<div id="mouseover_img" style="display: none "></div>
+<div class=submit_button><button type="button" onclick="endSorting()">Done</button></div>
+<div class=wrapper> 
+<ul id="sortable">
+{% for contact in contacts %}
+    <li class="ui-state-default" id={{ contact.facebook_id }}>
+    <div class=icon>
+        {{ contact.name }}
+        <img src={{ contact.image_url }}>
+        </img>
+    </div>
+    </li>
+{% endfor %}
+<script>$( "#sortable" ).sortable();</script>
 </body>
 </html>
