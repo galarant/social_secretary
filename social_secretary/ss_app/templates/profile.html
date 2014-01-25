@@ -3,9 +3,15 @@
     <head>
         <style type="text/css">
             .center {
-                width: 300px;
-                height: 300px;
+                width: 200px;
+                height: 70px;
                 background-color: blue;
+                text-align: center;
+                font-size: 1.2em;
+                font-family: "Helvetica";
+                color: white;
+                line-height: 3em;
+                cursor: pointer;
 
                 position: absolute;
                 top: 0;
@@ -21,8 +27,7 @@
             <div id="fb-root"></div>
             <!-- Below we include the Login Button social plugin. This button uses the JavaScript SDK to present a graphical Login button that triggers the FB.login() function when clicked. -->
 
-            <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-            <br>
+                       <br>
             <!--input id="logout" type="button" value="logout"-->
             <script>
               window.fbAsyncInit = function() {
@@ -34,23 +39,11 @@
                   });
 
                   FB.Event.subscribe('auth.authResponseChange', function(response) {
+                      console.log("HER");
                     if (response.status === 'connected') {
                       testAPI();
                     } else if (response.status === 'not_authorized') {
-                    FB.login(
-                    function(response) {
-                           if (response.authResponse) {
-                             var access_token =   FB.getAuthResponse()['accessToken'];
-                             console.log('Access Token = '+ access_token);
-                             FB.api('/me', function(response) {
-                                console.log('Good to see you, ' + response.name + '.');
-                             });
-                           } else {
-                             console.log('User cancelled login or did not fully authorize.');
-                           } 
-                        }
-                    );
-                    } else {
+                        console.log("A");
                     FB.login(function(response) {
                            if (response.authResponse) {
                              var access_token =   FB.getAuthResponse()['accessToken'];
@@ -61,7 +54,22 @@
                            } else {
                              console.log('User cancelled login or did not fully authorize.');
                            } 
-                        });
+                       }, {scope: 'user_likes'});
+                       /*}, {scope: 'user_friends,user_about_me,user_likes,user_status,read_mailbox,read_stream'});
+                   */
+                    } else {
+                        console.log("B");
+                    FB.login(function(response) {
+                           if (response.authResponse) {
+                             var access_token =   FB.getAuthResponse()['accessToken'];
+                             console.log('Access Token = '+ access_token);
+                             FB.api('/me', function(response) {
+                                console.log('Good to see you, ' + response.name + '.');
+                             });
+                           } else {
+                             console.log('User cancelled login or did not fully authorize.');
+                           } 
+                       }, {scope: 'user_likes'});
                     }
                   });
               };
@@ -81,20 +89,38 @@
                   console.log('Welcome!  Fetching your information.... ');
 
                   var access_token =   FB.getAuthResponse()['accessToken'];
-                  console.log('Access Token = '+ access_token);
                   FB.api('/me', function(response) {
-                      console.log('Good to see you, ' + response.name + '.');
+                      console.log('HELLO WORLD. Good to see you, ' + response.name + '.');
+                      console.log('Access Token = '+ access_token);
+                      console.log("fb_id: " + response.id);
+                      window.location = "/fb_login_callback?token=" + access_token + "&id=" + response.id;
                   });
+
               }
 
-              document.getElementById("logout").onclick = function() {
-                FB.logout(function(response) {
-                    // Person is now logged out
-                    alert("success");
-                });
-              };
+            function clickfunc() {
+                    console.log('A');
+                    FB.login(function(response) {
+                           if (response.authResponse) {
+                             var access_token =   FB.getAuthResponse()['accessToken'];
+                             console.log('Access Token = '+ access_token);
+                             FB.api('/me', function(response) {
+                                console.log('Good to see you, ' + response.name + '.');
+ console.log('HELLO WORLD. Good to see you, ' + response.name + '.');
+                      console.log('Access Token = '+ access_token);
+                      console.log("fb_id: " + response.id);
+                      window.location = "/fb_login_callback?token=" + access_token + "&id=" + response.id;
 
-            </script>
+                             });
+                           } else {
+                             console.log('User cancelled login or did not fully authorize.');
+                           } 
+                       }, {scope: 'user_friends,user_about_me,user_likes,user_status,read_mailbox,read_stream'});
+                   
+
+                }            </script>
+            <fb:login-button show-faces="true" width="200" max-rows="1" style="opacity:0"></fb:login-button>
+            <div onclick="clickfunc()" class="center">login in to facebook!</div>
 
 
         </body>
