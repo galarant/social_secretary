@@ -29,9 +29,41 @@ Installation and Setup
    ```
 
 7. Make sure your social_secretary database exists, and that your settings file is properly configured:
+
+   In social_secretary/settings.py:
+   ```python
+
+   from social_secretary.secret_settings import *
+
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.mysql',
+           'NAME': 'social_secretary',
+           'USER': 'social_secretary',
+           'PASSWORD': secret_settings.DEFAULT_DATABASE_PASSWORD,
+           'HOST': 'localhost',
+       },
+       'test': {
+           'ENGINE': 'django.db.backends.mysql',
+           'NAME': 'social_secretary_test',
+           'USER': 'soical_secretary',
+           'PASSWORD': secret_settings.TEST_DATABASE_PASSWORD,
+           'HOST': 'localhost',
+       }
+   }
    ```
-   $ vim /settings.py
-   $ vim /secret_settings.py
+
+   Create a secret_settings file for your db passwords:
+   ```
+   $ vim social_secretary/secret_settings.py
+   ```
+
+   In social_secretary/secret_settings.py:
+
+   ```python
+
+   DEFAULT_DATABASE_PASSWORD = 'pro_soda'
+   TEST_DATABASE_PASSWORD = 'pro_soda_test'
    ```
 
 8. Run syncdb:
