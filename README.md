@@ -30,27 +30,6 @@ Installation and Setup
 
 7. Make sure that your settings file is properly configured:
 
-   In social_secretary/settings.py:
-   ```python
-
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.mysql',
-           'NAME': 'social_secretary',
-           'USER': 'social_secretary',
-           'PASSWORD': secret_settings.DEFAULT_DATABASE_PASSWORD,
-           'HOST': 'localhost',
-       },
-       'test': {
-           'ENGINE': 'django.db.backends.mysql',
-           'NAME': 'social_secretary_test',
-           'USER': 'soical_secretary',
-           'PASSWORD': secret_settings.TEST_DATABASE_PASSWORD,
-           'HOST': 'localhost',
-       }
-   }
-   ```
-
    Create a secret_settings file for your db passwords:
    ```
    $ vim social_secretary/secret_settings.py
@@ -59,7 +38,6 @@ Installation and Setup
    In social_secretary/secret_settings.py:
 
    ```python
-
    DEFAULT_DATABASE_PASSWORD = 'my_dev_db_password'
    TEST_DATABASE_PASSWORD = 'my_test_db_password'
    ```
@@ -93,4 +71,3 @@ Tests use the nose test runner. From the project root, simply run:
 ```
 $ nosetests
 ```
-
