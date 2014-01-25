@@ -12,17 +12,7 @@ Installation and Setup
 
 2. Make sure that MySQL is correctly configured, and restart your DB server if necessary:
    ```
-   [client]
-   default-character-set=utf8
-
-   [mysql]
-   auto-rehash
-   default-character-set=utf8
-
-   [mysqld]
-   character-set-server = utf8
-   collation-server = utf8_unicode_ci
-   default-storage-engine = innodb
+   mysql> SET storage_engine=INNODB;
    ```
 
 3. Clone this repo and cd to the package root directory.
