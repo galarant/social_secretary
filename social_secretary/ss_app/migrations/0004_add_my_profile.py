@@ -33,7 +33,6 @@ class Migration(SchemaMigration):
         # Deleting field 'Contacts.user'
         db.delete_column(u'ss_app_contacts', 'user_id')
 
-
     def backwards(self, orm):
         # Deleting model 'Ranking'
         db.delete_table(u'ss_app_ranking')
@@ -50,7 +49,6 @@ class Migration(SchemaMigration):
         db.add_column(u'ss_app_contacts', 'user',
                       self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['auth.User']),
                       keep_default=False)
-
 
     models = {
         u'auth.group': {
