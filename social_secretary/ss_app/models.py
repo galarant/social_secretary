@@ -16,7 +16,7 @@ class MyProfile(UserenaBaseProfile):
                                        max_length=5)
 
 
-class Contacts(models.Model):
+class Contact(models.Model):
     name = models.CharField(max_length=255)
     facebook_id = models.BigIntegerField(db_index=True)
 
@@ -26,7 +26,7 @@ class Contacts(models.Model):
 
 class Ranking(models.Model):
     user = models.ForeignKey(User)
-    contact = models.ForeignKey(Contacts)
+    contact = models.ForeignKey(Contact)
     rank = models.PositiveIntegerField(null=True)
 
 
@@ -34,3 +34,11 @@ class FBUserInfo(models.Model):
     user = models.OneToOneField(User)
     facebook_id = models.BigIntegerField(db_index=True)
     oauth_token = models.CharField(max_length=512)
+
+
+class Interaction(models.Model):
+    contact = models.ForeignKey(Contact)
+    user = models.ForeignKey(User)
+    category = models.CharField(max_length=255)
+    direction = models.BinaryField()  # 0=U->C, 1=U<-C
+    interacted_at = models.DateTimeField()
