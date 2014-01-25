@@ -39,6 +39,16 @@ def finish_user_flow(request):
 
 
 def fb_login_callback(request):
+
+    def fix_name(name):
+        fml = name.split(' ')
+        if len(fml) > 2:
+            fml = [fml[0], fml[2]]
+        name = ' '.join(fml)
+        if len(name) > 15:
+            name = fml[0]
+        return name
+
     creds = request.META['QUERY_STRING'].split('&')
     fbtoken = creds[0].split('=')[1]
     fb_usrid = creds[1].split('=')[1]
@@ -67,7 +77,7 @@ def fb_login_callback(request):
                         counter[person] = 1
 
     for person in candidates:
-        contact = Contact(facebook_id=person[0], name=person[1])
+        contact = Contact(facebook_id=person[0], name=fix_name(person[1]))
         contacts.append(contact)
 
     t = loader.get_template('set_contacts.html')

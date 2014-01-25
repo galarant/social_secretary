@@ -26,7 +26,7 @@
   		}
 	h1 {
         color:rgb(0, 139, 111);
-        font-family:"Comic Sans MS", cursive, sans-serif;
+        font-family:"Helvetica", sans-serif;
         font-size:35px;
     	text-align: center;
         margin-bottom: auto;
@@ -46,8 +46,8 @@
 				border-color: rgba(0, 83, 139, 0.77);
             }
     img {
-    	width: 100px;
-    	height: 120px:
+    	width: 50px;
+    	height: 50px:
     	position:relative;
 		bottom:10px;
 		}
@@ -92,7 +92,7 @@
 	}
 
     p{
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Helvetica", sans-serif;
     font-style: bold;
     text-align:center;
     font-size: 15px;
@@ -102,7 +102,7 @@
     
     body:after {
     content: "";
-    background-image: url('http://www.ekaterinawalter.com/wp-content/uploads/2013/11/networking.jpg');
+    background-image: url('http://www.ksri.kit.edu/img/istock_000005622581medium.jpg');
     background-size:cover;
     opacity: 0.3;
     left: 0;
@@ -143,11 +143,12 @@
   }
 </script>
 	<h1>Social Secretary</h1>
-	<p>Rearrange your contacts to reflect your network, starting from the upper left!</p>
+    <br>
+	<p>Click and drag to pick your most important friends, starting from the upper left</p>
+    <br>
 </head>
 <body>
 <div id="mouseover_img" style="display: none "></div>
-<div class=submit_button><button type="button" onclick="endSorting()">Done</button></div>
 <div class=wrapper> 
 <ul id="sortable">
 {% for contact in contacts %}
@@ -159,6 +160,10 @@
     </div>
     </li>
 {% endfor %}
+</ul>
+</div>
+<br>
+<div class=submit_button><button type="button" onclick="endSorting()">Done</button></div>
 <script>$( "#sortable" ).sortable();</script>
 </body>
 </html>
