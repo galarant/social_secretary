@@ -55,12 +55,7 @@ Installation and Setup
    $ ./manage.py syncdb
    ```
 
-10. Run your migrations:
-   ```
-   $ ./manage.py migrate
-   ```
-
-11. Start your server:
+10. Start your server:
     ```
     $ ./manage.py runserver
 
