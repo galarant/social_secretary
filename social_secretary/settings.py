@@ -95,4 +95,6 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = '/media'
 
-
+# facebook app settings
+FACEBOOK_APP_ID = secret_settings.FACEBOOK_APP_ID
+FACEBOOK_APP_SECRET = secret_settings.FACEBOOK_APP_SECRET
