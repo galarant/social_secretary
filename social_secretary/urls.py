@@ -16,4 +16,5 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'fb_connect', fb_connect),
                        url(r'set_contacts', set_contacts),
+                       url(r'^accounts/', include('userena.urls')),
                        )

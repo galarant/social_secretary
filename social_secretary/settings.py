@@ -27,6 +27,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
+
 
 # Application definition
 
@@ -37,7 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'social_secretary.ss_app',
+    'userena',
+    'guardian',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +54,18 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_PROFILE_MODULE = 'ss_app.MyProfile'
+ANONYMOUS_USER_ID = -1
+LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
 
 ROOT_URLCONF = 'social_secretary.urls'
 
