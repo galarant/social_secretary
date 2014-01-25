@@ -23,3 +23,14 @@ def fb_login_callback(request):
     graph = GraphAPI(fbtoken)
     utils.get_extended_access_token(fbtoken, app_id, app_secret)
     return render(request, 'fb_login_request.html')
+
+def show_profile(request): 
+    from django.http import HttpResponse
+    #return render(request, 'profile.html')
+    return HttpResponse('OK')
+
+def redirect_signin_function(x, y):
+    return "/accounts/complete" 
+
+def show_profile(request):
+    return render(request, 'profile.html')
