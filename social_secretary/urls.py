@@ -5,7 +5,7 @@ from django.contrib import admin
 from social_secretary.ss_app.views import (
     fb_connect,
     set_contacts,
-		fb_login_callback,
+    fb_login_callback,
     redirect_signin_function,
     show_profile,
 )
