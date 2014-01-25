@@ -1,4 +1,5 @@
 import json
+from django.template import loader, Context
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -46,6 +47,7 @@ def fb_login_callback(request):
     # sort out the favorites
     counter = {}
     candidates = []
+    contacts = []
     while len(candidates) < 20:
         posts = paginator.next()['data']
         for post in posts:
@@ -60,18 +62,11 @@ def fb_login_callback(request):
                     else:
                         counter[person] = 1
 
-    temp_list = []
-
     for person in candidates:
         contact = Contact(facebook_id=person[0], name=person[1])
-        img_url = contact.image_url()
+        contacts.append(contact)
 
-        contact.save
+    t = loader.get_template('set_contacts.html')
+    c = Context({'contacts': contacts})
 
-        facebook_id = contact.facebook_id
-        facebook_name = contact.name
-        temp_list.append((facebook_id, img_url, facebook_name))
-
-    json_list = json.dumps(temp_list)
-
-    return HttpResponse(json_list, content_type="application/json")
+    return HttpResponse(t.render(c))
