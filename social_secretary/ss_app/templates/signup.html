@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>SignUp</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <style>
+    .form-signin { max-width: 300px; margin: 0 auto;}
+    </style>
+</head>
+<body>
+<div class="container">
+
+<div class="bs-example bs-example-form">
+<form method="post" class="form-signin" role="form">
+  {% csrf_token %}
+   <h1 class="form-signin-heading">Sign Up</h1>
+        <div class="input-group">
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
+        <input type="text" class="form-control" name="email" placeholder="Email" required>
+        <input type="password" class="form-control" name="password1" placeholder="Create password" required>
+        <input type="password" class="form-control" name="password2" placeholder="Repeat password" required>
+        </div>
+    <button class="btn btn-block btn-lg btn-primary" type="submit" style="margin-top: 30px;">Sign Up</button>
+    <a href="/accounts/signin" style="float: right; margin-top: 10px; margin-bottom: 30px;">Sign In</a>
+</form>
+</div>
+
+</div>
+</body>
+</html>

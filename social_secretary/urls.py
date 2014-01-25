@@ -25,6 +25,8 @@ urlpatterns = patterns('',
                        url(r'^accounts/complete', show_profile),
                        url(r'^accounts/signin$', 'userena.views.signin', {'template_name': 'signin.html',
                                                                           'redirect_signin_function': redirect_signin_function}),
-                       url(r'^accounts/signup$', 'userena.views.signup', {'success_url': '/accounts/complete'}),
+                       url(r'^accounts/signup$', 'userena.views.signup', {'success_url': '/accounts/complete',
+                                                                          'template_name' : 'signup.html'
+                                                                            }),
                        url(r'^accounts/', include('userena.urls')),
                        )
