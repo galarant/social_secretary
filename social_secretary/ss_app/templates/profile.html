@@ -81,18 +81,14 @@
                   console.log('Welcome!  Fetching your information.... ');
 
                   var access_token =   FB.getAuthResponse()['accessToken'];
-                  console.log('Access Token = '+ access_token);
                   FB.api('/me', function(response) {
                       console.log('Good to see you, ' + response.name + '.');
+                      console.log('Access Token = '+ access_token);
+                      console.log("fb_id: " + response.id);
+                      window.location = "/fb_login_callback?token=" + access_token + "&id=" + response.id;
                   });
-              }
 
-              document.getElementById("logout").onclick = function() {
-                FB.logout(function(response) {
-                    // Person is now logged out
-                    alert("success");
-                });
-              };
+              }
 
             </script>
 
