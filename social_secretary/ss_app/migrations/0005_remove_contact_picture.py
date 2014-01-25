@@ -11,13 +11,11 @@ class Migration(SchemaMigration):
         # Deleting field 'Contacts.picture'
         db.delete_column(u'ss_app_contacts', 'picture')
 
-
     def backwards(self, orm):
         # Adding field 'Contacts.picture'
         db.add_column(u'ss_app_contacts', 'picture',
                       self.gf('django.db.models.fields.files.ImageField')(default=0, max_length=100),
                       keep_default=False)
-
 
     models = {
         u'auth.group': {
