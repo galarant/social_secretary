@@ -1,18 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
 
 # Create your models here.
-
-class UserProfile(models.Model):
-	user = models.OneToOneField(User)
-	facebook_id = models.BigIntegerField(db_index=True)
-
-	def create_profile(sender, instance, created, **kwargs):
-		if created:
-			profile, created = UserProfile.objects.get_or_create(user=instance)
-
-	post_save.connect(create_profile, sender=User)
 
 class Contacts(models.Model):
 	name = models.CharField(max_length=255)
@@ -29,8 +18,5 @@ class Interactions(models.Model):
 	interaction_time = models.TimeField()
 
 
-#naive_calculate_score:
-#	for each Interactions:
-#		if (interaction.User = user && interaction.Contact = contact):
-#			total = total + 1;
+
 
