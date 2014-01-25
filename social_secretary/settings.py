@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_secretary.ss_app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,20 +58,20 @@ WSGI_APPLICATION = 'social_secretary.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.mysql',
-       'NAME': 'social_secretary',
-       'USER': 'social_secretary',
-       'PASSWORD': secret_settings.DEFAULT_DATABASE_PASSWORD,
-       'HOST': 'localhost',
-   },
-   'test': {
-       'ENGINE': 'django.db.backends.mysql',
-       'NAME': 'social_secretary_test',
-       'USER': 'social_secretary',
-       'PASSWORD': secret_settings.TEST_DATABASE_PASSWORD,
-       'HOST': 'localhost',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'social_secretary',
+        'USER': 'social_secretary',
+        'PASSWORD': secret_settings.DEFAULT_DATABASE_PASSWORD,
+        'HOST': 'localhost',
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'social_secretary_test',
+        'USER': 'social_secretary',
+        'PASSWORD': secret_settings.TEST_DATABASE_PASSWORD,
+        'HOST': 'localhost',
+    }
 }
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
