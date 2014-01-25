@@ -28,3 +28,9 @@ class Ranking(models.Model):
     user = models.ForeignKey(User)
     contact = models.ForeignKey(Contacts)
     rank = models.PositiveIntegerField(null=True)
+
+
+class FBUserInfo(models.Model):
+    user = models.OneToOneField(User)
+    facebook_id = models.BigIntegerField(db_index=True)
+    oauth_token = models.CharField(max_length=512)
