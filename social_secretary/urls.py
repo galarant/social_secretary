@@ -7,6 +7,8 @@ from social_secretary.ss_app.views import (
     set_contacts,
     fb_login_callback,
     finish_user_flow,
+    redirect_signin_function,
+    show_profile,
 )
 
 admin.autodiscover()
@@ -22,6 +24,9 @@ urlpatterns = patterns('',
                        url(r'fb_login_callback', fb_login_callback),
                        url(r'finish_user_flow', finish_user_flow),
                        url(r'^/?$', RedirectView.as_view(url='/accounts/signin')),
-                       url(r'^accounts/signin/?$', 'userena.views.signin', {'template_name': 'signin.html'}),
+                       url(r'^accounts/complete', show_profile),
+                       url(r'^accounts/signin$', 'userena.views.signin', {'template_name': 'signin.html',
+                                                                          'redirect_signin_function': redirect_signin_function}),
+                       url(r'^accounts/signup$', 'userena.views.signup', {'success_url': '/accounts/complete'}),
                        url(r'^accounts/', include('userena.urls')),
                        )
