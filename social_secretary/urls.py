@@ -5,6 +5,7 @@ from social_secretary.ss_app.views import (
     fb_connect,
     set_contacts,
 )
+import userena
 
 admin.autodiscover()
 
@@ -16,5 +17,6 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'fb_connect', fb_connect),
                        url(r'set_contacts', set_contacts),
+                       url(r'', 'userena.views.signin'),
                        url(r'^accounts/', include('userena.urls')),
                        )
