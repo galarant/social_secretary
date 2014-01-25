@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'userena',
     'guardian',
     'easy_thumbnails',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,13 +91,6 @@ DATABASES = {
         'USER': 'social_secretary',
         'PASSWORD': secret_settings.DEFAULT_DATABASE_PASSWORD,
         'HOST': 'localhost',
-    },
-    'test': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'social_secretary_test',
-        'USER': 'social_secretary',
-        'PASSWORD': secret_settings.TEST_DATABASE_PASSWORD,
-        'HOST': 'localhost',
     }
 }
 # Internationalization
@@ -117,3 +111,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/media'
+
+# facebook app settings
+FACEBOOK_APP_ID = secret_settings.FACEBOOK_APP_ID
+FACEBOOK_APP_SECRET = secret_settings.FACEBOOK_APP_SECRET

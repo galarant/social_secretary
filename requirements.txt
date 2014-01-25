@@ -1,5 +1,7 @@
 Django==1.6.1
 South==0.8.4
 MySQL-python==1.2.5
+Pillow
 autopep8
 nose
+facepy
