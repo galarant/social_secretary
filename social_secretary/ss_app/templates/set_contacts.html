@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
   <style>
   #sortable { 
   		list-style-type: none; 
@@ -57,7 +58,6 @@
     .icon:hover{
     	opacity:0.6;
     }
-    
     #sortable.ui-sortable{
     	position:relative; 
   		margin-left:auto;
@@ -98,7 +98,7 @@
     font-size: 15px;
     margin-bottom: auto;
     margin-top: auto;
-    }
+   }
     
     body:after {
     content: "";
@@ -122,7 +122,7 @@
   function endSorting(){
   	var sortedIDs = $( "#sortable" ).sortable( "toArray" );
   	var data = JSON.stringify(sortedIDs)
-  	console.log(data);
+    location.href="finish_user_flow.html";
   	/*$.ajax({
             type: 'POST',
             contentType: "application/json; charset=utf-8",
