@@ -28,7 +28,7 @@ Installation and Setup
    $ pip install -r requirements.txt
    ```
 
-7. Make sure your social_secretary database exists, and that your settings file is properly configured:
+7. Make sure that your settings file is properly configured:
 
    In social_secretary/settings.py:
    ```python
@@ -62,21 +62,28 @@ Installation and Setup
 
    ```python
 
-   DEFAULT_DATABASE_PASSWORD = 'pro_soda'
-   TEST_DATABASE_PASSWORD = 'pro_soda_test'
+   DEFAULT_DATABASE_PASSWORD = 'my_dev_db_password'
+   TEST_DATABASE_PASSWORD = 'my_test_db_password'
    ```
 
-8. Run syncdb:
+8. Create your databases, users and passwords:
+   ```
+   mysql> CREATE DATABASE social_secretary;
+   mysql> CREATE DATABASE social_secretary_test;
+   mysql> GRANT ALL ON social_secretary.* TO 'social_secretary'@'localhost' IDENTIFIED BY 'my_dev_db_password';
+   mysql> GRANT ALL ON social_secretary_test.* TO 'social_secretary'@'localhost' IDENTIFIED BY 'my_dev_db_password';
+
+9. Run syncdb:
    ```
    $ ./manage.py syncdb
    ```
 
-9. Run your migrations:
+10. Run your migrations:
    ```
    $ ./manage.py migrate
    ```
 
-10. Start your server:
+11. Start your server:
     ```
     $ ./manage.py runserver
 
