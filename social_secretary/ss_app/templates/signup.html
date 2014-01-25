@@ -12,9 +12,7 @@
 </head>
 <body>
 <div class="container">
-
-<div class="bs-example bs-example-form">
-<form method="post" class="form-signin" role="form">
+  <form method="post" class="form-signin">
   {% csrf_token %}
    <h1 class="form-signin-heading">Sign Up</h1>
         <div class="input-group">
@@ -26,8 +24,6 @@
     <button class="btn btn-block btn-lg btn-primary" type="submit" style="margin-top: 30px;">Sign Up</button>
     <a href="/accounts/signin" style="float: right; margin-top: 10px; margin-bottom: 30px;">Sign In</a>
 </form>
-</div>
-
 </div>
 </body>
 </html>
