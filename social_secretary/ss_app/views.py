@@ -41,7 +41,7 @@ def fb_login_callback(request):
     # sort out the favorites
     counter = {}
     candidates = []
-    while len(candidates) < 20:
+    while len(candidates) < 10:
         posts = paginator.next()['data']
         for post in posts:
             if 'likes' in post:
