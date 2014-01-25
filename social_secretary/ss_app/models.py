@@ -23,4 +23,4 @@ class Contacts(models.Model):
 class Ranking(models.Model):
     user = models.ForeignKey(User)
     contact = models.ForeignKey(Contacts)
-    rank = models.PositiveIntegerField()
+    rank = models.PositiveIntegerField(null=True)
