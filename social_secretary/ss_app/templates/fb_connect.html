@@ -1,1 +1,103 @@
-Hello FB Connect
+<!DOCTYPE>
+<html>
+    <head>
+        <style type="text/css">
+            .center {
+                width: 300px;
+                height: 300px;
+                background-color: blue;
+
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+
+                margin: auto;
+            }
+        </style>        
+    </head>
+        <body>
+            <div id="fb-root"></div>
+            <!-- Below we include the Login Button social plugin. This button uses the JavaScript SDK to present a graphical Login button that triggers the FB.login() function when clicked. -->
+
+            <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+            <br>
+            <!--input id="logout" type="button" value="logout"-->
+            <script>
+              window.fbAsyncInit = function() {
+                  FB.init({
+                    appId      : '1387739544820721',
+                    status     : true, // check login status
+                    cookie     : true, // enable cookies -allow the server to access the session
+                    xfbml      : true  // parse XFBML
+                  });
+
+                  FB.Event.subscribe('auth.authResponseChange', function(response) {
+                    if (response.status === 'connected') {
+                      testAPI();
+                    } else if (response.status === 'not_authorized') {
+                    FB.login(
+                    function(response) {
+                           if (response.authResponse) {
+                             var access_token =   FB.getAuthResponse()['accessToken'];
+                             console.log('Access Token = '+ access_token);
+                             FB.api('/me', function(response) {
+                                console.log('Good to see you, ' + response.name + '.');
+                             });
+                           } else {
+                             console.log('User cancelled login or did not fully authorize.');
+                           } 
+                        }
+                    );
+                    } else {
+                    FB.login(function(response) {
+                           if (response.authResponse) {
+                             var access_token =   FB.getAuthResponse()['accessToken'];
+                             console.log('Access Token = '+ access_token);
+                             FB.api('/me', function(response) {
+                                console.log('Good to see you, ' + response.name + '.');
+                             });
+                           } else {
+                             console.log('User cancelled login or did not fully authorize.');
+                           } 
+                        });
+                    }
+                  });
+              };
+
+              // Load the SDK asynchronously
+              (function(d) {
+                   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                   if (d.getElementById(id)) {return;}
+                   js = d.createElement('script'); js.id = id; js.async = true;
+                   js.src = "//connect.facebook.net/en_US/all.js";
+                   ref.parentNode.insertBefore(js, ref);
+              }(document));
+
+              // Here we run a very simple test of the Graph API after login is successful. 
+              // This testAPI() function is only called in those cases. 
+              function testAPI() {
+                  console.log('Welcome!  Fetching your information.... ');
+
+                  var access_token =   FB.getAuthResponse()['accessToken'];
+                  console.log('Access Token = '+ access_token);
+                  FB.api('/me', function(response) {
+                      console.log('Good to see you, ' + response.name + '.');
+                  });
+              }
+
+              document.getElementById("logout").onclick = function() {
+                FB.logout(function(response) {
+                    // Person is now logged out
+                    alert("success");
+                });
+              };
+
+            </script>
+
+
+        </body>
+</html>
+
+
