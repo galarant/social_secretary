@@ -9,6 +9,7 @@ from social_secretary.settings import (
 		FACEBOOK_APP_SECRET as app_secret,
 )
 
+from models import FBUserInfo
 
 # Create your views here.
 
@@ -27,8 +28,7 @@ def fb_login_callback(request):
 		fbtoken = creds[0].split('=')[1]
 		fb_usrid = creds[1].split('=')[1]
 		graph = GraphAPI(fbtoken)
-		utils.get_extended_access_token(fbtoken, app_id, app_secret)
-		#parse exchange and store in extended user model
-		#userfacebookinfo: a new class that extends user from auth.
-		#fields: id (big integer field) and oauthtoken
-		return render(request, 'fb_login_request.html')
+		extoken = utils.get_extended_access_token(fbtoken, app_id, app_secret)
+		user = FBUserInfo(facebook_id = fb_usrid, oauth_token = extoken)
+		#TODO template is not the right one
+		return render(request, 'set_contacts.html')

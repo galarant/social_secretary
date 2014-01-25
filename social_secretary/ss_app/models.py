@@ -9,3 +9,8 @@ class Contacts(models.Model):
 	facebook_id = models.BigIntegerField(db_index=True)
 	picture = models.ImageField(upload_to='/images')
 	user = models.ForeignKey(User)
+
+class FBUserInfo(models.Model):
+	user = models.OneToOneField(User)
+	facebook_id = models.BigIntegerField(db_index=True)
+	oauth_token = models.CharField(max_length=512)
