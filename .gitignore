@@ -36,3 +36,7 @@ caliendo/used
 
 #Secret settings
 social_secretary/secret_settings.py
+
+#quirky virtualenv stuff
+include/
+local/
