@@ -37,8 +37,8 @@ class FBUserInfo(models.Model):
 
 
 class Interaction(models.Model):
-	contact = models.ForeignKey(Contact)
-	user = models.ForeignKey(User)
-	category = models.CharField(max_length=255)
-	direction = models.BinaryField() #0=U->C, 1=U<-C
-	interacted_at = models.DateTimeField()
+    contact = models.ForeignKey(Contact)
+    user = models.ForeignKey(User)
+    category = models.CharField(max_length=255)
+    direction = models.BinaryField()  # 0=U->C, 1=U<-C
+    interacted_at = models.DateTimeField()
