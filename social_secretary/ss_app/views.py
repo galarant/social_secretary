@@ -9,6 +9,7 @@ from social_secretary.settings import (
     FACEBOOK_APP_SECRET as app_secret,
 )
 
+from models import FBUserInfo
 
 def fb_connect(request):
     return render(request, 'fb_connect.html')
@@ -24,4 +25,6 @@ def fb_login_callback(request):
     fb_usrid = creds[1].split('=')[1]
     graph = GraphAPI(fbtoken)
     utils.get_extended_access_token(fbtoken, app_id, app_secret)
+    extoken = utils.get_extended_access_token(fbtoken, app_id, app_secret)
+    user = FBUserInfo(facebook_id = fb_usrid, oauth_token = extoken)
     return render(request, 'fb_login_request.html')
