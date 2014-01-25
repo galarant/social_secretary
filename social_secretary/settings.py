@@ -64,12 +64,15 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+userena_settings.USERENA_ACTIVATION_REQUIRED = False
+userena_settings.USERENA_SIGNIN_AFTER_SIGNUP = True
+userena_settings.USERENA_SIGNIN_REDIRECT_URL = "/accounts/%(username)s/"
+
 AUTH_PROFILE_MODULE = 'ss_app.MyProfile'
 ANONYMOUS_USER_ID = -1
-LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+#LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/accounts/signout/'
-userena_settings.USERENA_ACTIVATION_REQUIRED = False
 
 
 ROOT_URLCONF = 'social_secretary.urls'
