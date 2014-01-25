@@ -46,3 +46,4 @@ local/
 
 #vim swp files
 *.swp
+*~

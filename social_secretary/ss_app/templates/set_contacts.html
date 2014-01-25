@@ -34,7 +34,7 @@
          
 	.wrapper {
                 width: 500px;
-                height: 600px;
+                height: 500px;
                 background-color: #009090;
 
                position:relative;
@@ -54,14 +54,10 @@
     .icon {
     	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
     	font-size:13px;
-        max-width: 100px;
-        max-height: 95px;
     	}
     .icon:hover{
     	opacity:0.6;
     }
- 
-   
     #sortable.ui-sortable{
     	position:relative; 
   		margin-left:auto;
@@ -92,7 +88,7 @@
     
 	.submit_button {
 	display: table;
-         margin: 0 auto;
+    margin: 0 auto;
 	}
 
     p{
@@ -115,7 +111,6 @@
     bottom: 0;
     position: absolute;
     z-index: -1;
-    margin-top: 100;
     }
   </style>
   <script>
@@ -127,12 +122,15 @@
   function endSorting(){
   	var sortedIDs = $( "#sortable" ).sortable( "toArray" );
   	var data = JSON.stringify(sortedIDs)
-        location.href="finish_user_flow.html";
-/*  	$.ajax({
-            type: "POST",
-            url: 'set_contacts.html',
+    location.href="finish_user_flow.html";
+  	/*$.ajax({
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            url: 'set_contacts',
+            data: data,
+            async: false,
             success: function (response) {
-                document.location.href="finish_user_flow.html";
+                alert("Record Has been saved in Database");
             },
             error: function ()
             { console.log('There is an error'); }
@@ -161,10 +159,6 @@
     </div>
     </li>
 {% endfor %}
-
-
-
-
 <script>$( "#sortable" ).sortable();</script>
 </body>
 </html>
