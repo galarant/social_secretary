@@ -50,3 +50,8 @@ def fb_login_callback(request):
 
 		#TODO template is not the right one
 		return render(request, 'set_contacts.html')
+
+
+
+def finish_user_flow(request):
+    return render(request, 'finish_user_flow.html')
