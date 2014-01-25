@@ -43,3 +43,6 @@ social_secretary/media/images/
 #quirky virtualenv stuff
 include/
 local/
+
+#vim swp files
+*.swp
