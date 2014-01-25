@@ -119,16 +119,6 @@
   var fb_name="Jane Smith";
   var num_contacts=0;
   
-  function addElements(){
-  	if (num_contacts>=20){
-  	alert("Exceeded the 20 contacts limit");
-  	} else {
-    	var x = $('<li class="ui-state-default" id='+fb_id+'><div class=icon>'+fb_name+'<img src='+img_url+'></img></div></li>');
-    	x.appendTo('#sortable');   	
-    	fb_id++;
-    	num_contacts++;
-    	}
-  };
   function endSorting(){
   	var sortedIDs = $( "#sortable" ).sortable( "toArray" );
   	var data = JSON.stringify(sortedIDs)
@@ -160,12 +150,15 @@
 <div class=submit_button><button type="button" onclick="endSorting()">Done</button></div>
 <div class=wrapper> 
 <ul id="sortable">
-</ul>
-</div>
- <script>$( "#sortable" ).sortable();
-	for (var i=0; i<20; i++){
-	addElements();
-	}
-</script>
+{% for contact in contacts %}
+    <li class="ui-state-default" id={{ contact.facebook_id }}>
+    <div class=icon>
+        {{ contact.name }}
+        <img src={{ contact.image_url }}>
+        </img>
+    </div>
+    </li>
+{% endfor %}
+<script>$( "#sortable" ).sortable();</script>
 </body>
 </html>

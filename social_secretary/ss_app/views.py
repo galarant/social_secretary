@@ -1,4 +1,10 @@
+import json
+from django.template import loader, Context
 from django.shortcuts import render
+from django.http import HttpResponse
+
+from models import Contact
+
 from facepy import (
     GraphAPI,
     utils,
@@ -41,7 +47,8 @@ def fb_login_callback(request):
     # sort out the favorites
     counter = {}
     candidates = []
-    while len(candidates) < 10:
+    contacts = []
+    while len(candidates) < 20:
         posts = paginator.next()['data']
         for post in posts:
             if 'likes' in post:
@@ -54,7 +61,12 @@ def fb_login_callback(request):
                             candidates.append(person)
                     else:
                         counter[person] = 1
-    # now turn this into a JSON object
 
-    # TODO template is not the right one
-    return render(request, 'set_contacts.html')
+    for person in candidates:
+        contact = Contact(facebook_id=person[0], name=person[1])
+        contacts.append(contact)
+
+    t = loader.get_template('set_contacts.html')
+    c = Context({'contacts': contacts})
+
+    return HttpResponse(t.render(c))
