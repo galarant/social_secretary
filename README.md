@@ -33,8 +33,6 @@ Installation and Setup
    In social_secretary/settings.py:
    ```python
 
-   from social_secretary.secret_settings import *
-
    DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.mysql',
