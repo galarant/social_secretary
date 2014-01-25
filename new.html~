@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <style>
+            .wrapper {
+                width: 400px;
+                height: 600px;
+                background-color: blue;
+
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+
+                margin: auto;
+            }
+            .contact {
+                display: inline-block;
+                width: 45px;
+                height: 45px;
+                background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+            <div class="contact"></div>
+        </div>
+    </body>
+</html>

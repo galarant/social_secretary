@@ -37,6 +37,10 @@ caliendo/used
 #Secret settings
 social_secretary/secret_settings.py
 
+<<<<<<< HEAD
+*~
+*swp
+=======
 #Uploaded Images
 social_secretary/media/images/
 
@@ -46,3 +50,4 @@ local/
 
 #vim swp files
 *.swp
+>>>>>>> c112ea458293f4752dbdb3a34c57126a8bc41e6a
