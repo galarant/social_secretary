@@ -27,6 +27,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
+
 
 # Application definition
 
@@ -37,7 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'social_secretary.ss_app',
+    'userena',
+    'guardian',
+    'easy_thumbnails',
     'south',
 )
 
@@ -49,6 +55,26 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+# userena package
+from userena import settings as userena_settings
+
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+userena_settings.USERENA_ACTIVATION_REQUIRED = False
+userena_settings.USERENA_SIGNIN_AFTER_SIGNUP = True
+userena_settings.USERENA_SIGNIN_REDIRECT_URL = "/accounts/%(username)s/"
+
+AUTH_PROFILE_MODULE = 'ss_app.MyProfile'
+ANONYMOUS_USER_ID = -1
+#LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
+
 
 ROOT_URLCONF = 'social_secretary.urls'
 
@@ -64,13 +90,6 @@ DATABASES = {
         'NAME': 'social_secretary',
         'USER': 'social_secretary',
         'PASSWORD': secret_settings.DEFAULT_DATABASE_PASSWORD,
-        'HOST': 'localhost',
-    },
-    'test': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'social_secretary_test',
-        'USER': 'social_secretary',
-        'PASSWORD': secret_settings.TEST_DATABASE_PASSWORD,
         'HOST': 'localhost',
     }
 }
@@ -95,3 +114,6 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = '/media'
 
+# facebook app settings
+FACEBOOK_APP_ID = secret_settings.FACEBOOK_APP_ID
+FACEBOOK_APP_SECRET = secret_settings.FACEBOOK_APP_SECRET

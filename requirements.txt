@@ -5,3 +5,4 @@ Pillow
 autopep8
 nose
 facepy
+django-userena
