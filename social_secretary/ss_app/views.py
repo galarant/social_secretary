@@ -1,4 +1,9 @@
+import json
 from django.shortcuts import render
+from django.http import HttpResponse
+
+from models import Contact
+
 from facepy import (
     GraphAPI,
     utils,
@@ -54,7 +59,19 @@ def fb_login_callback(request):
                             candidates.append(person)
                     else:
                         counter[person] = 1
-    # now turn this into a JSON object
 
-    # TODO template is not the right one
-    return render(request, 'set_contacts.html')
+    temp_list = []
+
+    for person in candidates:
+        contact = Contact(facebook_id=person[0], name=person[1])
+        img_url = contact.image_url()
+
+        contact.save
+
+        facebook_id = contact.facebook_id
+        facebook_name = contact.name
+        temp_list.append((facebook_id, img_url, facebook_name))
+
+    json_list = json.dumps(temp_list)
+
+    return HttpResponse(json_list, content_type="application/json")
